@@ -2,6 +2,7 @@
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
+using System.Net;
 using System.Text;
 
 namespace ArtifactoryApiCSharp.Workers
@@ -12,6 +13,8 @@ namespace ArtifactoryApiCSharp.Workers
 
         public ImprovedRestClient(string baseUrl, string username, string password)
         {
+            ServicePointManager.ServerCertificateValidationCallback +=
+        (sender, certificate, chain, sslPolicyErrors) => true;
             _client = new RestClient(baseUrl);
             _client.Authenticator = new HttpBasicAuthenticator(username, password);
         }
