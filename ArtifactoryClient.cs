@@ -19,12 +19,14 @@ namespace ArtifactoryApiCSharp
 
         private void InjectDependencies()
         {
+            this.Users = new Users(_client);
             this.Repositories = new Repositories(_client);
             this.Groups = new Groups(_client);
             this.Permissions = new Permissions(_client);
         }
 
         public Repositories Repositories { get; private set; }
+        public Users Users { get; private set; }
         public Groups Groups { get; set; }
         public Permissions Permissions { get; set; }
     }
